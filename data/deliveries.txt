@@ -1,0 +1,31 @@
+7001|1001|Bhubaneswar, Odisha|Amit Kumar|Delivered
+7002|1002|Lucknow, Uttar Pradesh|Rahul Verma|Delivered
+7003|1003|Kolkata, West Bengal|Suman Das|Delivered
+7004|1004|Mumbai, Maharashtra|Rohit Patil|Delivered
+7005|1005|Ahmedabad, Gujarat|Vivek Shah|Delivered
+7006|1006|Patna, Bihar|Arun Kumar|Delivered
+7007|1007|Hyderabad, Telangana|Kiran Reddy|Delivered
+7008|1008|Kochi, Kerala|Arun Nair|Delivered
+7009|1009|Raipur, Chhattisgarh|Manoj Sahu|Delivered
+7010|1010|Jaipur, Rajasthan|Raj Singh|Delivered
+7011|1011|Bengaluru, Karnataka|Vijay Kumar|Delivered
+7012|1012|Guwahati, Assam|Rakesh Das|Delivered
+7013|1013|Chandigarh, Chandigarh|Harpreet Singh|Delivered
+7014|1014|New Delhi, Delhi|Amit Singh|Delivered
+7015|1015|Cuttack, Odisha|Sanjay Mohanty|Delivered
+7016|1016|Ranchi, Jharkhand|Deepak Pradhan|Delivered
+7017|1017|Visakhapatnam, Andhra Pradesh|Ravi Kumar|Delivered
+7018|1018|Bhopal, Madhya Pradesh|Akash Pandey|Delivered
+7019|1019|Kolkata, West Bengal|Sourav Roy|Delivered
+7020|1020|Shimla, Himachal Pradesh|Vikas Thakur|Delivered
+7021|1021|Bhubaneswar, Odisha|Ranjan Behera|Assigned
+7022|1022|Lucknow, Uttar Pradesh|Mohit Singh|Assigned
+7023|1023|Kolkata, West Bengal|Abhishek Das|OutForDelivery
+7024|1024|Mumbai, Maharashtra|Nitin Patil|OutForDelivery
+7025|1025|Ahmedabad, Gujarat|Dhruv Shah|Delivered
+7026|1026|Patna, Bihar|Manish Kumar|Delivered
+7027|1027|Hyderabad, Telangana|Suresh Reddy|Delivered
+7028|1028|Kochi, Kerala|Vishnu Nair|Delivered
+7029|1029|Raipur, Chhattisgarh|Rohit Sahu|Delivered
+7030|1030|Jaipur, Rajasthan|Kunal Singh|Delivered
+7031|1031|Cuttack, Odisha|Amit Kumar|Delivered

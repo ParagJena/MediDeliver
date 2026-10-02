@@ -1,3 +1,50 @@
 101|Paracetamol|Pain Relief|25.5|99
 102|Cetirizine|Allergy|35|50
 103|Vitamin C|Supplement|120|30
+104|Ibuprofen|Pain Relief|45|60
+105|Omeprazole|Gastric|55|45
+106|Amoxicillin|Antibiotic|75|35
+107|Azithromycin|Antibiotic|85|40
+108|ORS|Hydration|22|80
+109|Pantoprazole|Gastric|65|50
+110|Levocetirizine|Allergy|40|45
+111|Calcium Tablets|Supplement|90|40
+112|Cough Syrup|Cold and Cough|110|35
+113|Antacid Tablets|Gastric|30|70
+114|Multivitamin|Supplement|150|25
+115|Diclofenac|Pain Relief|60|30
+116|Loratadine|Allergy|48|40
+117|Zinc Tablets|Supplement|70|55
+118|Azithral|Antibiotic|95|30
+119|Mefenamic Acid|Pain Relief|52|45
+120|Electral|Hydration|35|65
+121|Rabeprazole|Gastric|58|45
+122|Naproxen|Pain Relief|68|35
+123|Fexofenadine|Allergy|85|30
+124|Montelukast|Allergy|95|40
+125|Doxycycline|Antibiotic|72|35
+126|Cefixime|Antibiotic|110|30
+127|Metformin|Diabetes|42|60
+128|Glimepiride|Diabetes|65|45
+129|Amlodipine|Blood Pressure|38|55
+130|Losartan|Blood Pressure|52|50
+131|Atenolol|Blood Pressure|35|45
+132|Atorvastatin|Cholesterol|75|40
+133|Rosuvastatin|Cholesterol|90|35
+134|Calcium Carbonate|Supplement|55|50
+135|Vitamin D3|Supplement|100|40
+136|Iron Tablets|Supplement|65|45
+137|B Complex|Supplement|80|35
+138|Povidone Iodine|Antiseptic|95|25
+139|Antiseptic Cream|First Aid|70|40
+140|Bandage Roll|First Aid|45|60
+141|Cotton Pack|First Aid|35|75
+142|Thermometer|Medical Device|180|20
+143|Glucose Powder|Hydration|85|50
+144|Digestive Enzyme|Digestive Health|125|30
+145|Loperamide|Digestive Health|55|35
+146|Domperidone|Digestive Health|48|40
+147|ORS Lemon|Hydration|25|70
+148|Cough Lozenges|Cold and Cough|45|65
+149|Nasal Drops|Cold and Cough|60|40
+150|Saline Spray|Cold and Cough|95|30

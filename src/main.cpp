@@ -95,12 +95,20 @@ int main() {
             }
         }
 
-        Customer customer(
-            1,
-            "Rahul Sharma",
-            "9876543210",
-            "Bhubaneswar, Odisha"
-        );
+        vector<Customer> customers =
+            FileManager::loadCustomers();
+
+        if (customers.empty()) {
+            throw runtime_error(
+                "No customer records found."
+            );
+        }
+
+        vector<Delivery> deliveries =
+            FileManager::loadDeliveries();
+
+        vector<Order> orders =
+            FileManager::loadOrders();
 
         Pharmacy pharmacy(
             101,
@@ -112,9 +120,11 @@ int main() {
             pharmacy.addMedicine(medicine);
         }
 
-        FileManager::saveCustomer(customer);
-
         Cart cart;
+
+        Customer customer;
+
+        bool customerSelected = false;
 
         int choice;
 
@@ -123,27 +133,120 @@ int main() {
             cout << "\n=================================" << endl;
             cout << "       MEDIDELIVER SYSTEM" << endl;
             cout << "=================================" << endl;
-            cout << "1. View Medicines" << endl;
-            cout << "2. Search Medicine" << endl;
-            cout << "3. Add Medicine to Cart" << endl;
-            cout << "4. View Cart" << endl;
-            cout << "5. Remove Medicine from Cart" << endl;
-            cout << "6. Place Order" << endl;
-            cout << "7. Exit" << endl;
+
+            if (customerSelected) {
+                cout << "Current Customer : "
+                     << customer.getName()
+                     << endl;
+            }
+            else {
+                cout << "Current Customer : None"
+                     << endl;
+            }
+
+            cout << "---------------------------------" << endl;
+            cout << "1. Select Customer" << endl;
+            cout << "2. View Medicines" << endl;
+            cout << "3. Search Medicine" << endl;
+            cout << "4. Add Medicine to Cart" << endl;
+            cout << "5. View Cart" << endl;
+            cout << "6. Remove Medicine from Cart" << endl;
+            cout << "7. Place Order" << endl;
+            cout << "8. View Delivery Records" << endl;
+            cout << "9. View Order History" << endl;
+            cout << "10. Exit" << endl;
             cout << "=================================" << endl;
             cout << "Enter your choice: ";
+
             cin >> choice;
 
             if (cin.fail()) {
+
                 cin.clear();
                 cin.ignore(10000, '\n');
-                cout << "Invalid input." << endl;
+
+                cout << "Invalid input."
+                     << endl;
+
                 continue;
             }
 
             switch (choice) {
 
                 case 1: {
+
+                    cout << "\n========== CUSTOMER SELECTION =========="
+                         << endl;
+
+                    for (
+                        const Customer& currentCustomer :
+                        customers
+                    ) {
+
+                        cout << currentCustomer.getCustomerId()
+                             << ". "
+                             << currentCustomer.getName()
+                             << " - "
+                             << currentCustomer.getAddress()
+                             << endl;
+                    }
+
+                    int customerId;
+
+                    cout << "\nEnter Customer ID: ";
+                    cin >> customerId;
+
+                    if (cin.fail()) {
+
+                        cin.clear();
+                        cin.ignore(10000, '\n');
+
+                        cout << "Invalid customer ID."
+                             << endl;
+
+                        break;
+                    }
+
+                    bool found = false;
+
+                    for (
+                        const Customer& currentCustomer :
+                        customers
+                    ) {
+
+                        if (
+                            currentCustomer.getCustomerId()
+                            == customerId
+                        ) {
+
+                            customer =
+                                currentCustomer;
+
+                            customerSelected = true;
+
+                            found = true;
+
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+
+                        cout << "Customer not found."
+                             << endl;
+                    }
+                    else {
+
+                        cout << "\nCustomer selected successfully."
+                             << endl;
+
+                        customer.display();
+                    }
+
+                    break;
+                }
+
+                case 2: {
 
                     cout << "\n--- AVAILABLE MEDICINES ---"
                          << endl;
@@ -154,22 +257,38 @@ int main() {
                     break;
                 }
 
-                case 2: {
+                case 3: {
 
                     int medicineId;
 
                     cout << "\nEnter Medicine ID: ";
                     cin >> medicineId;
 
+                    if (cin.fail()) {
+
+                        cin.clear();
+                        cin.ignore(10000, '\n');
+
+                        cout << "Invalid medicine ID."
+                             << endl;
+
+                        break;
+                    }
+
                     Medicine* medicine =
-                        pharmacy.searchMedicine(medicineId);
+                        pharmacy.searchMedicine(
+                            medicineId
+                        );
 
                     if (medicine != nullptr) {
+
                         cout << "\nMedicine found:"
                              << endl;
+
                         medicine->display();
                     }
                     else {
+
                         cout << "Medicine not found."
                              << endl;
                     }
@@ -177,7 +296,7 @@ int main() {
                     break;
                 }
 
-                case 3: {
+                case 4: {
 
                     int medicineId;
                     int quantity;
@@ -185,12 +304,27 @@ int main() {
                     cout << "\nEnter Medicine ID: ";
                     cin >> medicineId;
 
+                    if (cin.fail()) {
+
+                        cin.clear();
+                        cin.ignore(10000, '\n');
+
+                        cout << "Invalid medicine ID."
+                             << endl;
+
+                        break;
+                    }
+
                     Medicine* medicine =
-                        pharmacy.searchMedicine(medicineId);
+                        pharmacy.searchMedicine(
+                            medicineId
+                        );
 
                     if (medicine == nullptr) {
+
                         cout << "Medicine not found."
                              << endl;
+
                         break;
                     }
 
@@ -206,6 +340,7 @@ int main() {
                     cin >> quantity;
 
                     try {
+
                         cart.addMedicine(
                             *medicine,
                             quantity
@@ -215,28 +350,16 @@ int main() {
                              << endl;
                     }
                     catch (const invalid_argument& e) {
+
                         cout << "Error: "
-                             << e.what() << endl;
-                    }
-                    catch (const runtime_error& e) {
-                        cout << "Error: "
-                             << e.what() << endl;
-                    }
-
-                    break;
-                }
-
-                case 4: {
-
-                    cout << "\n--- YOUR CART ---"
-                         << endl;
-
-                    if (cart.isEmpty()) {
-                        cout << "Cart is empty."
+                             << e.what()
                              << endl;
                     }
-                    else {
-                        cart.displayCart();
+                    catch (const runtime_error& e) {
+
+                        cout << "Error: "
+                             << e.what()
+                             << endl;
                     }
 
                     break;
@@ -244,26 +367,17 @@ int main() {
 
                 case 5: {
 
+                    cout << "\n--- YOUR CART ---"
+                         << endl;
+
                     if (cart.isEmpty()) {
-                        cout << "\nCart is empty."
-                             << endl;
-                        break;
-                    }
 
-                    int medicineId;
-
-                    cout << "\nEnter Medicine ID to remove: ";
-                    cin >> medicineId;
-
-                    try {
-                        cart.removeMedicine(medicineId);
-
-                        cout << "Medicine removed from cart."
+                        cout << "Cart is empty."
                              << endl;
                     }
-                    catch (const runtime_error& e) {
-                        cout << "Error: "
-                             << e.what() << endl;
+                    else {
+
+                        cart.displayCart();
                     }
 
                     break;
@@ -272,8 +386,63 @@ int main() {
                 case 6: {
 
                     if (cart.isEmpty()) {
+
                         cout << "\nCart is empty."
                              << endl;
+
+                        break;
+                    }
+
+                    int medicineId;
+
+                    cout << "\nEnter Medicine ID to remove: ";
+                    cin >> medicineId;
+
+                    if (cin.fail()) {
+
+                        cin.clear();
+                        cin.ignore(10000, '\n');
+
+                        cout << "Invalid medicine ID."
+                             << endl;
+
+                        break;
+                    }
+
+                    try {
+
+                        cart.removeMedicine(
+                            medicineId
+                        );
+
+                        cout << "Medicine removed from cart."
+                             << endl;
+                    }
+                    catch (const runtime_error& e) {
+
+                        cout << "Error: "
+                             << e.what()
+                             << endl;
+                    }
+
+                    break;
+                }
+
+                case 7: {
+
+                    if (!customerSelected) {
+
+                        cout << "\nPlease select a customer first."
+                             << endl;
+
+                        break;
+                    }
+
+                    if (cart.isEmpty()) {
+
+                        cout << "\nCart is empty."
+                             << endl;
+
                         break;
                     }
 
@@ -294,11 +463,25 @@ int main() {
                          << "(1 = Yes, 0 = No): ";
 
                     int confirm;
+
                     cin >> confirm;
 
+                    if (cin.fail()) {
+
+                        cin.clear();
+                        cin.ignore(10000, '\n');
+
+                        cout << "Invalid input."
+                             << endl;
+
+                        break;
+                    }
+
                     if (confirm != 1) {
+
                         cout << "Order cancelled."
                              << endl;
+
                         break;
                     }
 
@@ -333,8 +516,10 @@ int main() {
                     payment.processPayment();
                     payment.display();
 
-                    if (payment.getStatus() !=
-                        PaymentStatus::Successful) {
+                    if (
+                        payment.getStatus() !=
+                        PaymentStatus::Successful
+                    ) {
 
                         throw runtime_error(
                             "Payment failed."
@@ -345,12 +530,17 @@ int main() {
                         payment
                     );
 
-                    for (const CartItem& item :
-                         cart.getItems()) {
+                    for (
+                        const CartItem& item :
+                        cart.getItems()
+                    ) {
 
-                        if (!pharmacy.reduceStock(
+                        if (
+                            !pharmacy.reduceStock(
                                 item.medicine.getId(),
-                                item.quantity)) {
+                                item.quantity
+                            )
+                        ) {
 
                             throw runtime_error(
                                 "Unable to update medicine stock."
@@ -367,8 +557,10 @@ int main() {
 
                     order.display();
 
-                    for (const CartItem& item :
-                         cart.getItems()) {
+                    for (
+                        const CartItem& item :
+                        cart.getItems()
+                    ) {
 
                         Medicine* medicine =
                             pharmacy.searchMedicine(
@@ -376,6 +568,7 @@ int main() {
                             );
 
                         if (medicine != nullptr) {
+
                             FileManager::saveMedicine(
                                 *medicine
                             );
@@ -440,6 +633,18 @@ int main() {
                         order
                     );
 
+                    FileManager::saveDelivery(
+                        delivery
+                    );
+
+                    orders.push_back(
+                        order
+                    );
+
+                    deliveries.push_back(
+                        delivery
+                    );
+
                     cout << "\n--- FINAL ORDER STATUS ---"
                          << endl;
 
@@ -458,7 +663,99 @@ int main() {
                     break;
                 }
 
-                case 7: {
+                case 8: {
+
+                    cout << "\n========== DELIVERY RECORDS =========="
+                         << endl;
+
+                    if (deliveries.empty()) {
+
+                        cout << "No delivery records found."
+                             << endl;
+                    }
+                    else {
+
+                        for (
+                            const Delivery& delivery :
+                            deliveries
+                        ) {
+
+                            delivery.display();
+                        }
+                    }
+
+                    break;
+                }
+
+                case 9: {
+
+                    cout << "\n========== ORDER HISTORY =========="
+                         << endl;
+
+                    if (orders.empty()) {
+
+                        cout << "No order records found."
+                             << endl;
+                    }
+                    else {
+
+                        for (
+                            const Order& historicalOrder :
+                            orders
+                        ) {
+
+                            cout << "\n-----------------------------"
+                                 << endl;
+
+                            cout << "Order ID : "
+                                 << historicalOrder.getOrderId()
+                                 << endl;
+
+                            cout << "Total    : Rs. "
+                                 << historicalOrder.getTotalAmount()
+                                 << endl;
+
+                            cout << "Status   : ";
+
+                            switch (
+                                historicalOrder.getStatus()
+                            ) {
+
+                                case OrderStatus::Placed:
+                                    cout << "Placed";
+                                    break;
+
+                                case OrderStatus::Confirmed:
+                                    cout << "Confirmed";
+                                    break;
+
+                                case OrderStatus::OutForDelivery:
+                                    cout << "Out For Delivery";
+                                    break;
+
+                                case OrderStatus::Delivered:
+                                    cout << "Delivered";
+                                    break;
+
+                                case OrderStatus::Cancelled:
+                                    cout << "Cancelled";
+                                    break;
+                            }
+
+                            cout << endl;
+                        }
+
+                        cout << "\n-----------------------------"
+                             << endl;
+                        cout << "Total Orders : "
+                             << orders.size()
+                             << endl;
+                    }
+
+                    break;
+                }
+
+                case 10: {
 
                     cout << "\nThank you for using MediDeliver."
                          << endl;
@@ -466,29 +763,33 @@ int main() {
                     break;
                 }
 
-                default:
+                default: {
 
                     cout << "\nInvalid choice."
                          << endl;
+                }
             }
 
-        } while (choice != 7);
+        } while (choice != 10);
 
     }
     catch (const invalid_argument& e) {
 
         cout << "\nError: "
-             << e.what() << endl;
+             << e.what()
+             << endl;
     }
     catch (const runtime_error& e) {
 
         cout << "\nError: "
-             << e.what() << endl;
+             << e.what()
+             << endl;
     }
     catch (const exception& e) {
 
         cout << "\nUnexpected error: "
-             << e.what() << endl;
+             << e.what()
+             << endl;
     }
 
     return 0;

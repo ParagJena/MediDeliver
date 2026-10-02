@@ -5,6 +5,8 @@
 #include "Customer.h"
 #include "Order.h"
 #include "Payment.h"
+#include "Delivery.h"
+#include <vector>
 
 class FileManager {
 public:
@@ -14,6 +16,11 @@ public:
     static void saveCustomer(const Customer& customer);
     static void saveOrder(const Order& order);
     static void savePayment(const Payment& payment);
+    static void saveDelivery(const Delivery& delivery);
+
+    static std::vector<Customer> loadCustomers();
+    static std::vector<Delivery> loadDeliveries();
+    static std::vector<Order> loadOrders();
 
     static int getNextOrderId();
     static int getNextPaymentId();
