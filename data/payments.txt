@@ -1,4 +1,1 @@
-5001|1001|206|UPI|Successful
-5001|1001|206|UPI|Successful
-5001|1001|206|UPI|Successful
-5001|1001|206|UPI|Successful
+5001|1001|25.5|UPI|Successful

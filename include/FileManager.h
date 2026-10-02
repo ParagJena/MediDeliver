@@ -14,6 +14,10 @@ public:
     static void saveCustomer(const Customer& customer);
     static void saveOrder(const Order& order);
     static void savePayment(const Payment& payment);
+
+    static int getNextOrderId();
+    static int getNextPaymentId();
+    static int getNextDeliveryId();
 };
 
 #endif

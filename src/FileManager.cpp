@@ -206,3 +206,113 @@ void FileManager::savePayment(const Payment& payment) {
 
     file.close();
 }
+
+int FileManager::getNextOrderId() {
+
+    ifstream file("data/orders.txt");
+
+    string line;
+    int highestId = 1000;
+
+    while (getline(file, line)) {
+
+        if (line.empty()) {
+            continue;
+        }
+
+        stringstream ss(line);
+
+        string id;
+
+        if (getline(ss, id, '|')) {
+
+            try {
+                int currentId = stoi(id);
+
+                if (currentId > highestId) {
+                    highestId = currentId;
+                }
+            }
+            catch (...) {
+            }
+        }
+    }
+
+    file.close();
+
+    return highestId + 1;
+}
+
+int FileManager::getNextPaymentId() {
+
+    ifstream file("data/payments.txt");
+
+    string line;
+    int highestId = 5000;
+
+    while (getline(file, line)) {
+
+        if (line.empty()) {
+            continue;
+        }
+
+        stringstream ss(line);
+
+        string id;
+
+        if (getline(ss, id, '|')) {
+
+            try {
+                int currentId = stoi(id);
+
+                if (currentId > highestId) {
+                    highestId = currentId;
+                }
+            }
+            catch (...) {
+            }
+        }
+    }
+
+    file.close();
+
+    return highestId + 1;
+}
+
+int FileManager::getNextDeliveryId() {
+
+    ifstream file("data/orders.txt");
+
+    string line;
+    int highestId = 7000;
+
+    while (getline(file, line)) {
+
+        if (line.empty()) {
+            continue;
+        }
+
+        stringstream ss(line);
+
+        string id;
+
+        if (getline(ss, id, '|')) {
+
+            try {
+                int orderId = stoi(id);
+
+                int deliveryId = orderId + 6000;
+
+                if (deliveryId > highestId) {
+                    highestId = deliveryId;
+                }
+            }
+            catch (...) {
+            }
+        }
+    }
+
+    file.close();
+
+    return highestId + 1;
+}

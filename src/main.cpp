@@ -145,7 +145,8 @@ int main() {
 
                 case 1: {
 
-                    cout << "\n--- AVAILABLE MEDICINES ---" << endl;
+                    cout << "\n--- AVAILABLE MEDICINES ---"
+                         << endl;
 
                     pharmacy.sortMedicinesByPrice();
                     pharmacy.displayMedicines();
@@ -164,11 +165,13 @@ int main() {
                         pharmacy.searchMedicine(medicineId);
 
                     if (medicine != nullptr) {
-                        cout << "\nMedicine found:" << endl;
+                        cout << "\nMedicine found:"
+                             << endl;
                         medicine->display();
                     }
                     else {
-                        cout << "Medicine not found." << endl;
+                        cout << "Medicine not found."
+                             << endl;
                     }
 
                     break;
@@ -186,21 +189,27 @@ int main() {
                         pharmacy.searchMedicine(medicineId);
 
                     if (medicine == nullptr) {
-                        cout << "Medicine not found." << endl;
+                        cout << "Medicine not found."
+                             << endl;
                         break;
                     }
 
                     cout << "Medicine : "
-                         << medicine->getName() << endl;
+                         << medicine->getName()
+                         << endl;
 
                     cout << "Available Stock : "
-                         << medicine->getStock() << endl;
+                         << medicine->getStock()
+                         << endl;
 
                     cout << "Enter Quantity: ";
                     cin >> quantity;
 
                     try {
-                        cart.addMedicine(*medicine, quantity);
+                        cart.addMedicine(
+                            *medicine,
+                            quantity
+                        );
 
                         cout << "Medicine added to cart."
                              << endl;
@@ -219,10 +228,12 @@ int main() {
 
                 case 4: {
 
-                    cout << "\n--- YOUR CART ---" << endl;
+                    cout << "\n--- YOUR CART ---"
+                         << endl;
 
                     if (cart.isEmpty()) {
-                        cout << "Cart is empty." << endl;
+                        cout << "Cart is empty."
+                             << endl;
                     }
                     else {
                         cart.displayCart();
@@ -234,7 +245,8 @@ int main() {
                 case 5: {
 
                     if (cart.isEmpty()) {
-                        cout << "\nCart is empty." << endl;
+                        cout << "\nCart is empty."
+                             << endl;
                         break;
                     }
 
@@ -260,32 +272,41 @@ int main() {
                 case 6: {
 
                     if (cart.isEmpty()) {
-                        cout << "\nCart is empty." << endl;
+                        cout << "\nCart is empty."
+                             << endl;
                         break;
                     }
 
-                    double total = cart.calculateTotal();
+                    double total =
+                        cart.calculateTotal();
 
                     cout << "\n--- ORDER SUMMARY ---"
                          << endl;
 
                     cart.displayCart();
 
-                    cout << "\nCustomer:" << endl;
+                    cout << "\nCustomer:"
+                         << endl;
+
                     customer.display();
 
-                    cout << "\nConfirm order? (1 = Yes, 0 = No): ";
+                    cout << "\nConfirm order? "
+                         << "(1 = Yes, 0 = No): ";
 
                     int confirm;
                     cin >> confirm;
 
                     if (confirm != 1) {
-                        cout << "Order cancelled." << endl;
+                        cout << "Order cancelled."
+                             << endl;
                         break;
                     }
 
+                    int orderId =
+                        FileManager::getNextOrderId();
+
                     Order order(
-                        1001,
+                        orderId,
                         customer,
                         cart.getItems(),
                         total
@@ -296,14 +317,18 @@ int main() {
 
                     order.display();
 
+                    int paymentId =
+                        FileManager::getNextPaymentId();
+
                     Payment payment(
-                        5001,
+                        paymentId,
                         order.getOrderId(),
                         order.getTotalAmount(),
                         "UPI"
                     );
 
-                    cout << "\n--- PAYMENT ---" << endl;
+                    cout << "\n--- PAYMENT ---"
+                         << endl;
 
                     payment.processPayment();
                     payment.display();
@@ -316,7 +341,9 @@ int main() {
                         );
                     }
 
-                    FileManager::savePayment(payment);
+                    FileManager::savePayment(
+                        payment
+                    );
 
                     for (const CartItem& item :
                          cart.getItems()) {
@@ -366,8 +393,11 @@ int main() {
 
                     deliveryQueue.displayQueue();
 
+                    int deliveryId =
+                        FileManager::getNextDeliveryId();
+
                     Delivery delivery(
-                        7001,
+                        deliveryId,
                         order.getOrderId(),
                         customer.getAddress(),
                         ""
@@ -395,7 +425,8 @@ int main() {
                         deliveryQueue.processNextOrder();
 
                     cout << "\nProcessing Order ID : "
-                         << processedOrder << endl;
+                         << processedOrder
+                         << endl;
 
                     delivery.updateStatus(
                         DeliveryStatus::Delivered
@@ -405,7 +436,9 @@ int main() {
                         OrderStatus::Delivered
                     );
 
-                    FileManager::saveOrder(order);
+                    FileManager::saveOrder(
+                        order
+                    );
 
                     cout << "\n--- FINAL ORDER STATUS ---"
                          << endl;
