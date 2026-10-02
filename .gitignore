@@ -1,4 +1,9 @@
+driver/*.ko
+driver/*.o
+driver/*.mod
+driver/*.mod.c
+driver/Module.symvers
+driver/modules.order
+driver/.*.cmd
 build/
 backups/
-*.o
-*.out
