@@ -1,0 +1,12 @@
+101|Paracetamol|Pain Relief|25.5|98
+102|Cetirizine|Allergy|35|49
+103|Vitamin C|Supplement|120|29
+101|Paracetamol|Pain Relief|25.5|98
+102|Cetirizine|Allergy|35|49
+103|Vitamin C|Supplement|120|29
+101|Paracetamol|Pain Relief|25.5|98
+102|Cetirizine|Allergy|35|49
+103|Vitamin C|Supplement|120|29
+101|Paracetamol|Pain Relief|25.5|98
+102|Cetirizine|Allergy|35|49
+103|Vitamin C|Supplement|120|29

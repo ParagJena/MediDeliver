@@ -1,0 +1,4 @@
+build/
+backups/
+*.o
+*.out
