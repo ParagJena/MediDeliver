@@ -29,3 +29,4 @@
 7029|1029|Raipur, Chhattisgarh|Rohit Sahu|Delivered
 7030|1030|Jaipur, Rajasthan|Kunal Singh|Delivered
 7031|1031|Cuttack, Odisha|Amit Kumar|Delivered
+7032|1032|Chandigarh, Chandigarh|Amit Kumar|Delivered

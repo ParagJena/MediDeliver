@@ -29,3 +29,4 @@
 5029|1029|195|UPI|Successful
 5030|1030|340|Credit Card|Successful
 5031|1031|25.5|UPI|Successful
+5032|1032|25.5|UPI|Successful

@@ -1,4 +1,4 @@
-101|Paracetamol|Pain Relief|25.5|99
+101|Paracetamol|Pain Relief|25.5|98
 102|Cetirizine|Allergy|35|50
 103|Vitamin C|Supplement|120|30
 104|Ibuprofen|Pain Relief|45|60
