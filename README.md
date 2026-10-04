@@ -2,7 +2,7 @@
 
 ## Linux-Based Medicine Delivery Management System
 
-MediDeliver is a console-based Medicine Delivery Management System developed using C++17 and implemented exclusively on Linux.
+MediDeliver is a console-based Medicine Delivery Management System developed using C++ and implemented exclusively on Linux.
 
 The system models the complete medicine delivery workflow, including customer selection, pharmacy and medicine management, cart operations, order processing, payment simulation, delivery queue management, delivery tracking, and file-based data persistence.
 
